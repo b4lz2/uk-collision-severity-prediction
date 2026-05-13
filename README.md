@@ -157,6 +157,17 @@ SELECT
 FROM "dft-road-casualty-statistics-collision-last-5-years";
 ```
 
+## Database Views
+
+The following views are created in DBRepo via the REST API.
+See `notebooks/02_dbrepo_views.ipynb` for the full implementation.
+
+| View Name | Purpose |
+| ----------------------- | ----------------------------------------------------------------------- |
+| `collision_ml_features` | Selects the 15 input features and the target label `collision_severity` directly from the raw collision table. This is the primary data source for the ML pipeline, used by `01_load_data.py` to load training, validation, and test splits without reading any local files. |
+| `collision_severity_summary` | Groups collisions by severity, road type, urban or rural area, and speed limit, and counts the total records per group. Used to verify the class imbalance between Fatal, Serious, and Slight accidents before applying SMOTE balancing in `02_preprocess.py`. |
+
+
 ## Contributors
 
 - A — Logan Charles
