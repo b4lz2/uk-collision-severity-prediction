@@ -16,13 +16,12 @@ https://www.gov.uk/government/statistical-data-sets/road-safety-open-data
 
 ### Folder structure
 
-- `data/raw/` — original input datasets as published by the source
-- `data/processed/` — cleaned and feature-engineered data
+- `src/data/processed/` — cleaned and feature-engineered data
 - `src/` — Python source code (preprocessing, models, evaluation)
 - `notebooks/` — Jupyter notebooks (incl. DBRepo REST API interactions)
-- `outputs/figures/` — generated plots and visualisations
-- `outputs/models/` — trained model artefacts
-- `outputs/predictions/` — model output predictions
+- `src/outputs/figures/` — generated plots and visualisations
+- `src/outputs/models/` — trained model artefacts
+- `src/outputs/predictions/` — model output predictions
 - `docs/` — additional documentation (validation, model cards)
 - `config/` — configuration files
 
