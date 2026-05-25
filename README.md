@@ -61,3 +61,47 @@ See `notebooks/02_dbrepo_views.ipynb` for the full implementation.
 - B — Hardt Julian
 - C — Höfinger Balthasar
 - D — El Dib Yehea
+
+## Licences
+
+This project involves three categories of artefact, each with a separate licence.
+
+### Input Data
+
+The input dataset is the **STATS19 Road Safety Open Dataset** published by the
+UK Department for Transport and available at
+<https://www.gov.uk/government/statistical-data-sets/road-safety-open-data>.
+
+It is licensed under the **Open Government Licence v3.0 (OGL v3.0)**:
+<https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/>
+
+**Obligations:** Attribution is required. Derived works must acknowledge the
+source with the statement:
+> Contains public sector information licensed under the Open Government Licence v3.0.
+
+OGL v3.0 is compatible with Creative Commons Attribution 4.0 (CC BY 4.0) and
+does not impose ShareAlike restrictions, so the output data licence (CC BY 4.0)
+is compatible.
+
+### Software / Code
+
+All source code in this repository is licensed under the **MIT Licence**.
+See [LICENSE](./LICENSE) for the full text.
+
+MIT was chosen because it is a permissive open-source licence that is fully
+compatible with OGL v3.0 and imposes no restrictions on reuse, modification,
+or distribution. It is one of the most widely adopted licences for research
+software.
+
+### Output Data
+
+All output artefacts produced by this experiment — including trained model
+files, preprocessed datasets, evaluation figures (confusion matrices,
+performance charts, feature importance plots), and predictions — are released
+under the **Creative Commons Attribution 4.0 International (CC BY 4.0)**
+licence: <https://creativecommons.org/licenses/by/4.0/>
+
+This licence permits unrestricted reuse, redistribution, and adaptation for
+any purpose, including commercially, provided appropriate credit is given.
+CC BY 4.0 is compatible with OGL v3.0 and consistent with the FWF Open
+Access policy.
