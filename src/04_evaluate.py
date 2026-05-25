@@ -118,7 +118,7 @@ if hasattr(best_model, "feature_importances_"):
 else:
     print(f"  Note: {best_model_name} does not expose feature_importances_ — skipping plot.")
 
-print("\n✅ 04_evaluate.py complete.")
+print("\n 04_evaluate.py complete.")
 print("\nSummary:")
 print(f"  Model        : {best_model_name}")
 print(f"  Test Accuracy: {test_accuracy:.1%}")

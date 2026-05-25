@@ -126,6 +126,19 @@ model_filename = (
 joblib.dump(best_model, model_filename)
 print(f"\nSaved model artefact: {model_filename}")
 
+# --- EXTRACT AND SAVE PREDICTIONS HERE ---
+print("Saving model predictions...")
+
+predictions_df = X_test.copy()
+
+predictions_df["actual_severity"] = y_test
+predictions_df["predicted_severity"] = y_pred
+
+pred_filename = f"outputs/predictions/test_predictions_{date.today()}.csv"
+predictions_df.to_csv(pred_filename, index=False)
+
+print(f"Saved predictions to: {pred_filename}")
+
 
 # ─────────────────────────────────────────────
 # 5. PERFORMANCE COMPARISON CHART (validation)
@@ -186,4 +199,4 @@ plt.savefig("outputs/figures/04_performance_comparison.png", dpi=150, bbox_inche
 plt.close()
 print("Saved: outputs/figures/04_performance_comparison.png")
 
-print("\n✅ 03_train_classifier.py complete — run 04_evaluate.py next.")
+print("\n 03_train_classifier.py complete — run 04_evaluate.py next.")
