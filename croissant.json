@@ -1,0 +1,622 @@
+{
+    "@context": {
+      "@language": "en",
+      "@vocab": "https://schema.org/",
+      "sc": "https://schema.org/",
+      "cr": "http://mlcommons.org/croissant/",
+      "rai": "http://mlcommons.org/croissant/RAI/",
+      "dct": "http://purl.org/dc/terms/",
+      "citeAs": "cr:citeAs",
+      "column": "cr:column",
+      "conformsTo": "dct:conformsTo",
+      "data": {
+        "@id": "cr:data",
+        "@type": "@json"
+      },
+      "dataType": {
+        "@id": "cr:dataType",
+        "@type": "@vocab"
+      },
+      "examples": {
+        "@id": "cr:examples",
+        "@type": "@json"
+      },
+      "extract": "cr:extract",
+      "field": "cr:field",
+      "fileProperty": "cr:fileProperty",
+      "fileObject": "cr:fileObject",
+      "fileSet": "cr:fileSet",
+      "format": "cr:format",
+      "includes": "cr:includes",
+      "isLiveDataset": "cr:isLiveDataset",
+      "jsonPath": "cr:jsonPath",
+      "key": "cr:key",
+      "md5": "cr:md5",
+      "parentField": "cr:parentField",
+      "path": "cr:path",
+      "recordSet": "cr:recordSet",
+      "references": "cr:references",
+      "regex": "cr:regex",
+      "repeated": "cr:repeated",
+      "replace": "cr:replace",
+      "separator": "cr:separator",
+      "source": "cr:source",
+      "subField": "cr:subField",
+      "transform": "cr:transform"
+    },
+    "@type": "sc:Dataset",
+    "dct:conformsTo": "http://mlcommons.org/croissant/1.0",
+    "name": "Road Safety Data – Collisions (Last 5 Years)",
+    "description": "Police-reported road traffic collision records for Great Britain covering 2019–2023, collected via the STATS19 reporting system and published by the UK Department for Transport. The dataset contains 503,475 records with 44 attributes per collision. In this experiment, 15 features and 1 target label (collision_severity) are used to train supervised ML models to classify collision severity as Fatal, Serious, or Slight.",
+    "citeAs": "@misc{dft2025roadsafety, title={Road Safety Data – Collisions (Last 5 Years)}, author={{Department for Transport, UK Government}}, year={2025}, howpublished={\\url{https://www.gov.uk/government/statistical-data-sets/road-safety-open-data}}, note={Open Government Licence v3.0. Collected via STATS19 police reporting system. First published September 2025, revised November 2025. Accessed March 2026.}}",
+    "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "url": "https://www.gov.uk/government/statistical-data-sets/road-safety-open-data",
+    "version": "1.0.0",
+    "inLanguage": "en",
+    "datePublished": "2025-09-01",
+    "dateModified": "2025-11-01",
+    "creator": {
+      "@type": "sc:Person",
+      "name": "Yehea El Dib",
+      "identifier": "https://orcid.org/0009-0003-8506-0271"
+    },
+    "publisher": {
+      "@type": "sc:Organization",
+      "name": "UK Department for Transport",
+      "url": "https://www.gov.uk/government/organisations/department-for-transport"
+    },
+    "keywords": [
+      "road safety",
+      "traffic collisions",
+      "accident severity",
+      "Great Britain",
+      "STATS19",
+      "open government data",
+      "machine learning",
+      "classification"
+    ],
+    "distribution": [
+      {
+        "@type": "cr:FileObject",
+        "@id": "collisions-csv",
+        "name": "dft-road-casualty-statistics-collision-last-5-years.csv",
+        "description": "Single CSV file containing all 503,475 police-reported road collision records for Great Britain from 2019 to 2023, with 44 attributes per record.",
+        "contentUrl": "https://data.dft.gov.uk/road-accidents-safety-data/dft-road-casualty-statistics-collision-last-5-years.csv",
+        "encodingFormat": "text/csv"
+      }
+    ],
+    "recordSet": [
+      {
+        "@type": "cr:RecordSet",
+        "@id": "severity-enum",
+        "description": "Enumeration of the three possible collision severity labels used as the target variable.",
+        "dataType": "sc:Enumeration",
+        "key": { "@id": "severity-enum/code" },
+        "field": [
+          {
+            "@type": "cr:Field",
+            "@id": "severity-enum/code",
+            "description": "Numeric code for collision severity as stored in the raw dataset.",
+            "dataType": "sc:Integer"
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "severity-enum/label",
+            "description": "Human-readable severity label.",
+            "dataType": "sc:Text"
+          }
+        ],
+        "data": [
+          { "severity-enum/code": 1, "severity-enum/label": "Fatal" },
+          { "severity-enum/code": 2, "severity-enum/label": "Serious" },
+          { "severity-enum/code": 3, "severity-enum/label": "Slight" }
+        ]
+      },
+      {
+        "@type": "cr:RecordSet",
+        "@id": "splits",
+        "description": "Train / validation / test splits applied in the ML experiment (70% / 15% / 15%, stratified by collision_severity).",
+        "dataType": "cr:Split",
+        "key": { "@id": "splits/name" },
+        "field": [
+          {
+            "@type": "cr:Field",
+            "@id": "splits/name",
+            "dataType": "sc:Text"
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "splits/url",
+            "dataType": "cr:Split"
+          }
+        ],
+        "data": [
+          { "splits/name": "train",      "splits/url": "cr:TrainingSplit" },
+          { "splits/name": "validation", "splits/url": "cr:ValidationSplit" },
+          { "splits/name": "test",       "splits/url": "cr:TestSplit" }
+        ]
+      },
+      {
+        "@type": "cr:RecordSet",
+        "@id": "collisions",
+        "description": "All 44 columns of the raw STATS19 collisions CSV. The 15 features selected for the ML pipeline are annotated with 'Selected feature for ML pipeline' in their descriptions; the target label is annotated with 'Target label for ML pipeline'.",
+        "key": { "@id": "collisions/collision_index" },
+        "field": [
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_index",
+            "description": "Unique identifier for each collision record.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_index" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_year",
+            "description": "Calendar year in which the collision occurred.",
+            "dataType": [
+              "sc:Integer",
+              "https://qudt.org/vocab/unit/YR"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_year" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_ref_no",
+            "description": "Police force reference number for the collision.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_ref_no" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/location_easting_osgr",
+            "description": "British National Grid easting coordinate of the collision location.",
+            "dataType": [
+              "sc:Float",
+              "https://si-digital-framework.org/SI/units/metre"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "location_easting_osgr" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/location_northing_osgr",
+            "description": "British National Grid northing coordinate of the collision location.",
+            "dataType": [
+              "sc:Float",
+              "https://si-digital-framework.org/SI/units/metre"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "location_northing_osgr" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/longitude",
+            "description": "WGS84 longitude of the collision location in decimal degrees.",
+            "dataType": [
+              "sc:Float",
+              "https://si-digital-framework.org/SI/units/degree"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "longitude" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/latitude",
+            "description": "WGS84 latitude of the collision location in decimal degrees.",
+            "dataType": [
+              "sc:Float",
+              "https://si-digital-framework.org/SI/units/degree"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "latitude" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/police_force",
+            "description": "Code identifying the police force that recorded the collision.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "police_force" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_severity",
+            "description": "Target label for ML pipeline. Severity of the collision: 1=Fatal, 2=Serious, 3=Slight.",
+            "dataType": [
+              "sc:Integer",
+              "cr:Label"
+            ],
+            "references": { "@id": "severity-enum/code" },
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_severity" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/number_of_vehicles",
+            "description": "Selected feature for ML pipeline. Number of vehicles involved in the collision.",
+            "dataType": [
+              "sc:Integer",
+              "https://qudt.org/vocab/unit/NUM"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "number_of_vehicles" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/number_of_casualties",
+            "description": "Selected feature for ML pipeline. Number of casualties resulting from the collision.",
+            "dataType": [
+              "sc:Integer",
+              "https://qudt.org/vocab/unit/NUM"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "number_of_casualties" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/date",
+            "description": "Date of the collision (DD/MM/YYYY).",
+            "dataType": "sc:Date",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "date" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/day_of_week",
+            "description": "Selected feature for ML pipeline. Day of the week the collision occurred (1=Sunday, 2=Monday, …, 7=Saturday).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "day_of_week" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/time",
+            "description": "Time of the collision (HH:MM, 24-hour clock).",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "time" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/local_authority_district",
+            "description": "Code for the local authority district where the collision occurred.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "local_authority_district" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/local_authority_ons_district",
+            "description": "ONS code for the local authority district.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "local_authority_ons_district" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/local_authority_highway",
+            "description": "Code for the highway authority responsible for the road.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "local_authority_highway" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/local_authority_highway_current",
+            "description": "Current highway authority code.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "local_authority_highway_current" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/first_road_class",
+            "description": "Selected feature for ML pipeline. Classification of the first road involved (e.g. Motorway, A road, B road).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "first_road_class" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/first_road_number",
+            "description": "Road number of the first road involved.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "first_road_number" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/road_type",
+            "description": "Selected feature for ML pipeline. Type of road on which the collision occurred (e.g. single carriageway, dual carriageway, roundabout).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "road_type" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/speed_limit",
+            "description": "Selected feature for ML pipeline. Posted speed limit on the road at the collision location, in miles per hour.",
+            "dataType": [
+              "sc:Integer",
+              "https://qudt.org/vocab/unit/MI-PER-HR"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "speed_limit" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/junction_detail_historic",
+            "description": "Historic coding of junction detail (pre-2016 STATS19 schema).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "junction_detail_historic" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/junction_detail",
+            "description": "Selected feature for ML pipeline. Type of junction at or near the collision site (e.g. roundabout, T-junction, crossroads).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "junction_detail" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/junction_control",
+            "description": "Selected feature for ML pipeline. Type of traffic control at the junction (e.g. traffic signals, give way, stop sign).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "junction_control" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/second_road_class",
+            "description": "Classification of the second road involved in the collision.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "second_road_class" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/second_road_number",
+            "description": "Road number of the second road involved in the collision.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "second_road_number" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/pedestrian_crossing_human_control_historic",
+            "description": "Historic coding for human-controlled pedestrian crossing (pre-2016 STATS19 schema).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "pedestrian_crossing_human_control_historic" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/pedestrian_crossing_physical_facilities_historic",
+            "description": "Historic coding for physical pedestrian crossing facilities (pre-2016 STATS19 schema).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "pedestrian_crossing_physical_facilities_historic" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/pedestrian_crossing",
+            "description": "Selected feature for ML pipeline. Presence and type of pedestrian crossing facilities at the collision site.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "pedestrian_crossing" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/light_conditions",
+            "description": "Selected feature for ML pipeline. Lighting conditions at the time of the collision (e.g. daylight, darkness with street lighting).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "light_conditions" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/weather_conditions",
+            "description": "Selected feature for ML pipeline. Weather conditions at the time of the collision (e.g. fine, rain, fog).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "weather_conditions" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/road_surface_conditions",
+            "description": "Selected feature for ML pipeline. Condition of the road surface at the time of the collision (e.g. dry, wet, icy).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "road_surface_conditions" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/special_conditions_at_site",
+            "description": "Selected feature for ML pipeline. Any special conditions present at the site (e.g. road works, oil/diesel spillage).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "special_conditions_at_site" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/carriageway_hazards_historic",
+            "description": "Historic coding for carriageway hazards (pre-2016 STATS19 schema).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "carriageway_hazards_historic" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/carriageway_hazards",
+            "description": "Selected feature for ML pipeline. Hazards present on the carriageway at the time of the collision (e.g. object on road, previous accident).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "carriageway_hazards" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/urban_or_rural_area",
+            "description": "Selected feature for ML pipeline. Whether the collision occurred in an urban or rural area (1=Urban, 2=Rural).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "urban_or_rural_area" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/did_police_officer_attend_scene_of_accident",
+            "description": "Whether a police officer attended the scene (1=Yes, 2=No, 3=No – self-completion).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "did_police_officer_attend_scene_of_accident" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/trunk_road_flag",
+            "description": "Indicates whether the road is a trunk road (1=Trunk, 2=Non-trunk).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "trunk_road_flag" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/lsoa_of_accident_location",
+            "description": "Lower Super Output Area code for the collision location.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "lsoa_of_accident_location" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/enhanced_severity_collision",
+            "description": "Enhanced severity classification code (DfT derived variable).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "enhanced_severity_collision" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_injury_based",
+            "description": "Injury-based severity classification (DfT derived variable).",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_injury_based" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_adjusted_severity_serious",
+            "description": "Adjusted probability that the collision was of serious severity (value in [0, 1]).",
+            "dataType": [
+              "sc:Float",
+              "https://qudt.org/vocab/unit/FRACTION"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_adjusted_severity_serious" }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "collisions/collision_adjusted_severity_slight",
+            "description": "Adjusted probability that the collision was of slight severity (value in [0, 1]).",
+            "dataType": [
+              "sc:Float",
+              "https://qudt.org/vocab/unit/FRACTION"
+            ],
+            "source": {
+              "fileObject": { "@id": "collisions-csv" },
+              "extract": { "column": "collision_adjusted_severity_slight" }
+            }
+          }
+        ]
+      }
+    ]
+  }
