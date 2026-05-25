@@ -1,0 +1,45 @@
+Column,Ontology,Concept URI,Description
+collision_index,iCity-TE,https://w3id.org/icity/iCity-TE#TrafficEvent,Unique identifier for a recorded traffic accident event
+collision_year,OWL-Time,http://www.w3.org/2006/time#year,Calendar year in which the collision occurred
+collision_ref_no,iCity-TE,https://w3id.org/icity/iCity-TE#TrafficEvent,Police reference number for the collision report
+location_easting_osgr,GeoSPARQL,http://www.opengis.net/ont/geosparql#hasGeometry,Easting coordinate in the Ordnance Survey National Grid (OSGB36) reference system
+location_northing_osgr,GeoSPARQL,http://www.opengis.net/ont/geosparql#hasGeometry,Northing coordinate in the Ordnance Survey National Grid (OSGB36) reference system
+longitude,WGS84,http://www.w3.org/2003/01/geo/wgs84_pos#long,WGS84 geographic longitude of the collision location
+latitude,WGS84,http://www.w3.org/2003/01/geo/wgs84_pos#lat,WGS84 geographic latitude of the collision location
+lsoa_of_accident_location,GeoSPARQL,http://www.opengis.net/ont/geosparql#sfWithin,Lower Super Output Area (LSOA) code identifying the census geography of the collision
+date,OWL-Time,http://www.w3.org/2006/time#inXSDDate,Calendar date on which the collision occurred (YYYY-MM-DD)
+day_of_week,OWL-Time,http://www.w3.org/2006/time#dayOfWeek,Day of the week on which the collision occurred (coded integer)
+time,OWL-Time,http://www.w3.org/2006/time#inXSDTime,Time of day at which the collision occurred (HH:MM)
+collision_severity,iCity-TE,https://w3id.org/icity/iCity-TE#AccidentSeverity,"Severity classification of the collision: Fatal (1), Serious (2), or Slight (3)"
+number_of_vehicles,iCity-TE,https://w3id.org/icity/iCity-TE#numberOfVehiclesInvolved,Count of vehicles involved in the collision
+number_of_casualties,iCity-TE,https://w3id.org/icity/iCity-TE#numberOfCasualties,Total number of casualties (killed or injured) resulting from the collision
+police_force,iCity-TE,https://w3id.org/icity/iCity-TE#ReportingAgency,Police force area responsible for recording and reporting the collision
+did_police_officer_attend_scene_of_accident,iCity-TE,https://w3id.org/icity/iCity-TE#EmergencyResponse,Flag indicating whether a police officer attended the scene of the accident
+road_type,iCity-OTN,https://w3id.org/icity/OTN#RoadType,"Type of road on which the collision occurred (e.g. single carriageway, dual carriageway, roundabout)"
+speed_limit,iCity-OTN,https://w3id.org/icity/OTN#SpeedLimit,Posted speed limit in miles per hour at the collision location
+first_road_class,iCity-OTN,https://w3id.org/icity/OTN#RoadClassification,"Classification of the first (primary) road at the collision site (e.g. Motorway, A road, B road)"
+first_road_number,iCity-OTN,https://w3id.org/icity/OTN#Road,Numeric identifier of the first road at the collision site
+second_road_class,iCity-OTN,https://w3id.org/icity/OTN#RoadClassification,Classification of the second road at a junction collision site
+second_road_number,iCity-OTN,https://w3id.org/icity/OTN#Road,Numeric identifier of the second road at a junction collision site
+trunk_road_flag,iCity-OTN,https://w3id.org/icity/OTN#TrunkRoad,Flag indicating whether the road is classified as a trunk road
+urban_or_rural_area,iCity-OTN,https://w3id.org/icity/OTN#AreaType,Classification of the collision location as urban or rural
+junction_detail,iCity-OTN,https://w3id.org/icity/OTN#Junction,Type of junction at or near the collision location
+junction_detail_historic,iCity-OTN,https://w3id.org/icity/OTN#Junction,Historic coding of junction type (legacy field from pre-2016 STATS19 reporting)
+junction_control,iCity-OTN,https://w3id.org/icity/OTN#TrafficControl,"Type of traffic control present at the junction (e.g. traffic signals, give way, stop sign)"
+light_conditions,iCity-TE,https://w3id.org/icity/iCity-TE#LightCondition,"Ambient light conditions at the time of the collision (e.g. daylight, darkness with lighting)"
+weather_conditions,iCity-TE,https://w3id.org/icity/iCity-TE#WeatherCondition,Weather conditions at the time and location of the collision
+road_surface_conditions,iCity-TE,https://w3id.org/icity/iCity-TE#RoadSurfaceCondition,"Condition of the road surface at the time of the collision (e.g. dry, wet, frost)"
+special_conditions_at_site,iCity-TE,https://w3id.org/icity/iCity-TE#RoadHazard,Any special conditions or hazards present at the collision site
+carriageway_hazards,iCity-TE,https://w3id.org/icity/iCity-TE#RoadHazard,Hazards present on the carriageway at the time of the collision
+carriageway_hazards_historic,iCity-TE,https://w3id.org/icity/iCity-TE#RoadHazard,Historic coding of carriageway hazards (legacy field from pre-2016 STATS19 reporting)
+pedestrian_crossing_human_control_historic,iCity-OTN,https://w3id.org/icity/OTN#PedestrianCrossing,Historic coding of human-controlled pedestrian crossing presence (legacy STATS19 field)
+pedestrian_crossing_physical_facilities_historic,iCity-OTN,https://w3id.org/icity/OTN#PedestrianCrossing,Historic coding of physical pedestrian crossing facilities (legacy STATS19 field)
+pedestrian_crossing,iCity-OTN,https://w3id.org/icity/OTN#PedestrianCrossing,Type of pedestrian crossing facility present at the collision location
+local_authority_district,iCity-OTN,https://w3id.org/icity/OTN#AdministrativeRegion,Local authority district in which the collision occurred
+local_authority_ons_district,iCity-OTN,https://w3id.org/icity/OTN#AdministrativeRegion,ONS (Office for National Statistics) code for the local authority district
+local_authority_highway,iCity-OTN,https://w3id.org/icity/OTN#AdministrativeRegion,Highway authority responsible for the road where the collision occurred
+local_authority_highway_current,iCity-OTN,https://w3id.org/icity/OTN#AdministrativeRegion,Current highway authority code (updated from legacy coding)
+enhanced_severity_collision,iCity-TE,https://w3id.org/icity/iCity-TE#AccidentSeverity,Enhanced injury-based severity classification (where police forces have adopted injury-based reporting)
+collision_injury_based,iCity-TE,https://w3id.org/icity/iCity-TE#AccidentSeverity,Flag indicating whether this record uses injury-based rather than outcome-based severity coding
+collision_adjusted_severity_serious,iCity-TE,https://w3id.org/icity/iCity-TE#AccidentSeverity,Adjusted serious severity classification accounting for injury-based reporting adjustments
+collision_adjusted_severity_slight,iCity-TE,https://w3id.org/icity/iCity-TE#AccidentSeverity,Adjusted slight severity classification accounting for injury-based reporting adjustments
