@@ -1,0 +1,173 @@
+{
+  "@context": "https://w3id.org/fair4ml/v0.1/context.jsonld",
+  "@type": "MLModel",
+  "name": "UK Collision Severity Classifier (Gradient Boosting)",
+  "version": "1.0.0",
+  "dateCreated": "2026-05-25",
+  "description": "Classifier that predicts the severity of road traffic collisions in the UK (Fatal, Serious, Slight) from features like weather, light, road type, and time. Trained on the UK Department for Transport's STATS19 data (2020–2024). Three models were compared (Decision Tree, Random Forest, Gradient Boosting); Gradient Boosting won on Macro F1 on the validation set.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Höfinger, Balthasar",
+      "identifier": "https://orcid.org/0009-0000-2002-4200"
+    },
+    {
+      "@type": "Person",
+      "name": "Hardt, Julian",
+      "identifier": "https://orcid.org/0009-0003-0171-5796"
+    },
+    {
+      "@type": "Person",
+      "name": "El Dib, Yehea",
+      "identifier": "https://orcid.org/0009-0003-8506-0271"
+    },
+    {
+      "@type": "Person",
+      "name": "Logan, Charles",
+      "identifier": "https://orcid.org/0009-0002-3977-1286"
+    }
+  ],
+
+  "trainedOn": {
+    "@type": "Dataset",
+    "name": "UK DfT Road Casualty Statistics – Collisions (last 5 years, 3NF, DBRepo)",
+    "url": "https://test.dbrepo.tuwien.ac.at/database/82c19b39-246c-4409-b25c-8baf3a158a70",
+    "identifier": "10.82556/c8r3-bf26",
+    "isBasedOn": "https://www.gov.uk/government/statistical-data-sets/road-safety-open-data",
+    "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+
+  "algorithm": {
+    "name": "GradientBoostingClassifier",
+    "implementation": "scikit-learn",
+    "version": "1.8.0"
+  },
+
+  "hyperparameters": {
+    "n_estimators": 150,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "random_state": 42
+  },
+
+  "preprocessing": {
+    "resampling": "SMOTE (training set only)",
+    "train_validation_test_split": "stratified"
+  },
+
+  "features": [
+    "speed_limit",
+    "light_conditions",
+    "weather_conditions",
+    "road_surface_conditions",
+    "road_type",
+    "urban_or_rural_id",
+    "number_of_vehicles",
+    "number_of_casualties",
+    "day_of_week",
+    "junction_detail",
+    "junction_control",
+    "pedestrian_crossing",
+    "first_road_class",
+    "special_conditions_at_site",
+    "carriageway_hazards"
+  ],
+
+  "target": "collision_severity",
+  "targetClasses": ["Fatal", "Serious", "Slight"],
+
+  "evaluationMetrics": {
+    "test_set": {
+      "samples": 17220,
+      "accuracy": 0.6755,
+      "macro_f1": 0.4034,
+      "macro_precision": 0.4062,
+      "macro_recall": 0.4386,
+      "weighted_f1": 0.6681,
+      "per_class": {
+        "Fatal": {
+          "precision": 0.0766,
+          "recall": 0.2475,
+          "f1": 0.117,
+          "support": 295
+        },
+        "Serious": {
+          "precision": 0.3577,
+          "recall": 0.2407,
+          "f1": 0.2878,
+          "support": 4175
+        },
+        "Slight": {
+          "precision": 0.7843,
+          "recall": 0.8278,
+          "f1": 0.8054,
+          "support": 12750
+        }
+      }
+    },
+    "modelSelection": {
+      "criterion": "Macro F1 on validation set",
+      "candidates": [
+        {
+          "name": "Decision Tree",
+          "algorithm": "DecisionTreeClassifier",
+          "hyperparameters": {
+            "max_depth": 15,
+            "class_weight": "balanced",
+            "random_state": 42
+          },
+          "validation_macro_f1": 0.369,
+          "validation_accuracy": 0.576,
+          "selected": false
+        },
+        {
+          "name": "Random Forest",
+          "algorithm": "RandomForestClassifier",
+          "hyperparameters": {
+            "n_estimators": 200,
+            "max_depth": 20,
+            "class_weight": "balanced_subsample",
+            "random_state": 42,
+            "n_jobs": -1
+          },
+          "validation_macro_f1": 0.382,
+          "validation_accuracy": 0.646,
+          "selected": false
+        },
+        {
+          "name": "Gradient Boosting",
+          "algorithm": "GradientBoostingClassifier",
+          "hyperparameters": {
+            "n_estimators": 150,
+            "max_depth": 6,
+            "learning_rate": 0.1,
+            "random_state": 42
+          },
+          "validation_macro_f1": 0.403,
+          "validation_accuracy": 0.672,
+          "selected": true
+        }
+      ]
+    }
+  },
+
+  "intendedUse": "Course project for demonstrating FAIR data science. Useful for exploring how things like weather, road type, and time of day relate to collision severity in UK STATS19 data. Not meant to be used for real risk scoring, insurance, or any decision about individual people.",
+
+  "limitations": "Only trained on UK data from 2020–2024, won't transfer to other countries or time periods. The data is very imbalanced (Fatal: 295, Serious: 4175, Slight: 12750 in the test set). SMOTE on the training set helps the model spot minority classes more often, but the Fatal precision is still only 0.08 — most Fatal predictions are wrong. Overall accuracy (67.5%) is actually below the majority-class baseline (~74%), which is the trade-off you get from SMOTE. The model learns correlations, not causes. It also inherits whatever biases are in the original police reports (e.g. underreporting of slight injuries).",
+
+  "modelArtifact": {
+    "@type": "DataDownload",
+    "name": "gradient_boosting_severity_2026-05-25.pkl",
+    "encodingFormat": "application/octet-stream",
+    "contentUrl": "TBD_TUWRD_URL_FROM_T3.9"
+  },
+
+  "wasDerivedFrom": [
+    {
+      "@type": "SoftwareSourceCode",
+      "url": "https://github.com/b4lz2/uk-collision-severity-prediction"
+    }
+  ]
+}
