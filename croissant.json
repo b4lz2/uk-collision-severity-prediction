@@ -51,7 +51,7 @@
   "@type": "sc:Dataset",
   "dct:conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "Road Safety Data – Collisions (Last 5 Years)",
-  "description": "Police-reported road traffic collision records for Great Britain covering 2019–2023, collected via the STATS19 reporting system and published by the UK Department for Transport. The dataset contains 503,475 records with 44 attributes per collision. In this experiment, 15 features and 1 target label (collision_severity) are fetched from DBRepo to train supervised ML models to classify collision severity as Fatal, Serious, or Slight.",
+  "description": "Police-reported road traffic collision records for Great Britain covering 2020–2024, collected via the STATS19 reporting system and published by the UK Department for Transport. The dataset contains 503,475 records with 44 attributes per collision. In this experiment, 15 features and 1 target label (collision_severity) are fetched from DBRepo to train supervised ML models to classify collision severity as Fatal, Serious, or Slight.",
   "citeAs": "@misc{dft2025roadsafety, title={Road Safety Data – Collisions (Last 5 Years)}, author={{Department for Transport, UK Government}}, year={2025}, howpublished={\\url{https://www.gov.uk/government/statistical-data-sets/road-safety-open-data}}, note={Open Government Licence v3.0. Collected via STATS19 police reporting system. First published September 2025, revised November 2025. Accessed March 2026.}}",
   "license": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
   "url": "https://www.gov.uk/government/statistical-data-sets/road-safety-open-data",
