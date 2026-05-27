@@ -1,16 +1,97 @@
 # UK Collision Severity Prediction
 
+[![DOI](https://zenodo.org/badge/DOI/TBD.svg)](TBD_ZENODO_DOI_LINK)
+
 Predicting the severity of road traffic collisions in the United Kingdom
-using the Department for Transport's STATS19 open data (2019–2023).
+using the Department for Transport's STATS19 open data (2020–2024).
 
 ## Project context
 
 Developed as part of the FAIR Data Science course (DaSt 2026) at TU Wien.
 
+## Abstract
+
+The UK government publishes road safety data — every accident reported by the
+police since 1979. We load the last few years into a normalised database on
+TU Wien's DBRepo and train a classifier that tries to predict how bad a
+collision was (Fatal, Serious, or Slight) from things like the weather, road
+type, and time of day.
+
+The whole pipeline runs from one REST API source, no local CSVs. We compare
+three classifiers on a validation set, pick the best (Gradient Boosting),
+and evaluate it on a held-out test set. Everything — code, model, predictions,
+figures, metadata — is open licensed and documented with the usual FAIR
+metadata stuff (RO-Crate, CodeMeta, FAIR4ML, Croissant, Model Card).
+
 ## Data source
 
 Department for Transport, UK Government — Road Safety Data:
 https://www.gov.uk/government/statistical-data-sets/road-safety-open-data
+
+Mirrored as a 3NF database on TU Wien DBRepo:
+https://test.dbrepo.tuwien.ac.at/database/82c19b39-246c-4409-b25c-8baf3a158a70
+(DOI: `10.82556/c8r3-bf26`)
+
+## Requirements and installation
+
+- **Python** 3.13.11
+- All Python dependencies are pinned in [`requirements.txt`](./requirements.txt)
+
+```powershell
+git clone https://github.com/b4lz2/uk-collision-severity-prediction.git
+cd uk-collision-severity-prediction
+pip install -r requirements.txt
+```
+
+You also need a DBRepo account to fetch the data. See [Authentication](#authentication) below.
+
+## Reproducing the experiment
+
+The pipeline runs as four scripts in order, from the `src/` folder:
+
+```powershell
+cd src
+
+# 1. Fetch the data from DBRepo (paginated, ~500k rows)
+python 01_load_data.py
+
+# 2. Apply SMOTE to balance the training set, produce splits
+python 02_preprocess.py
+
+# 3. Train three classifiers, pick the best by Macro F1, save the model
+python 03_train_classifier.py
+
+# 4. Evaluate the best model on the test set and produce figures
+python 04_evaluate.py
+```
+
+Each script writes its outputs to `src/data/processed/` or `src/outputs/` —
+see the table below.
+
+## Inputs and outputs
+
+### Inputs
+
+| Source                                   | Format            | Description                                                                                                                                                                                           |
+| ---------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DBRepo view `collision_ml_features`      | JSON via REST API | 16 columns (15 features + the `collision_severity` label), one row per collision — used by the ML pipeline                                                                                            |
+| DBRepo view `collision_severity_summary` | JSON via REST API | 6 columns (speed_limit, road_type, number_of_vehicles, urban_or_rural_id, number_of_casualties, collision_severity), one row per collision — used for the class imbalance check in `02_preprocess.py` |
+
+### Outputs
+
+| Path                                                       | Format | Description                                      |
+| ---------------------------------------------------------- | ------ | ------------------------------------------------ |
+| `src/data/processed/train.csv`                             | CSV    | Training split (stratified)                      |
+| `src/data/processed/train_resampled.csv`                   | CSV    | Training split after SMOTE oversampling          |
+| `src/data/processed/validation.csv`                        | CSV    | Validation split for model selection             |
+| `src/data/processed/test.csv`                              | CSV    | Held-out test split                              |
+| `src/outputs/models/gradient_boosting_severity_<date>.pkl` | joblib | Best trained model                               |
+| `src/outputs/predictions/test_predictions_<date>.csv`      | CSV    | Predictions on the test set                      |
+| `src/outputs/figures/01_data_understanding.png`            | PNG    | Feature distributions and class balance overview |
+| `src/outputs/figures/02_class_imbalance.png`               | PNG    | Class distribution before vs. after SMOTE        |
+| `src/outputs/figures/03_confusion_matrix.png`              | PNG    | Test set confusion matrix                        |
+| `src/outputs/figures/04_performance_comparison.png`        | PNG    | Per-class metrics + model comparison             |
+| `src/outputs/figures/05_feature_importance.png`            | PNG    | Feature importances of the chosen model          |
 
 ## File organisation
 
@@ -32,7 +113,7 @@ or special characters. Dates follow ISO 8601 (`YYYY-MM-DD`).
 
 | Category       | Pattern                             | Example                                |
 | -------------- | ----------------------------------- | -------------------------------------- |
-| Input data     | `<source>_<content>_<period>.<ext>` | `dft_collisions_2019-2023.csv`         |
+| Input data     | `<source>_<content>_<period>.<ext>` | `dft_collisions_2020-2024.csv`         |
 | Processed data | `<content>_<step>_<version>.<ext>`  | `collisions_cleaned_v1.parquet`        |
 | Scripts        | `<NN>_<action>_<object>.py`         | `01_load_data.py`                      |
 | Notebooks      | `<NN>_<topic>.ipynb`                | `01_dbrepo_setup.ipynb`                |
@@ -42,7 +123,7 @@ or special characters. Dates follow ISO 8601 (`YYYY-MM-DD`).
 
 ## Entity Relationship Diagram
 
-<img width="12713" height="7607" alt="ERD" src="https://github.com/user-attachments/assets/a3111636-37fe-4863-b18f-3a7a3678f6bd" />
+<img alt="ERD" src="https://github.com/user-attachments/assets/a3111636-37fe-4863-b18f-3a7a3678f6bd" width="900" />
 
 ## Database Views
 
@@ -140,16 +221,20 @@ The data loading script handles all documented API error codes:
 
 ## RO-Crate
 
-RO-Crate json file: https://github.com/b4lz2/uk-collision-severity-prediction/blob/main/ro-crate-metadata.json
+RO-Crate JSON file: https://github.com/b4lz2/uk-collision-severity-prediction/blob/main/ro-crate-metadata.json
 
 RO-Crate Validation: https://github.com/b4lz2/uk-collision-severity-prediction/blob/main/docs/validation
 
 ## Contributors
 
-- A — Logan Charles
-- B — Hardt Julian
-- C — Höfinger Balthasar
-- D — El Dib Yehea
+- A — Logan, Charles ([0009-0002-3977-1286](https://orcid.org/0009-0002-3977-1286))
+- B — Hardt, Julian ([0009-0003-0171-5796](https://orcid.org/0009-0003-0171-5796))
+- C — Höfinger, Balthasar ([0009-0000-2002-4200](https://orcid.org/0009-0000-2002-4200))
+- D — El Dib, Yehea ([0009-0003-8506-0271](https://orcid.org/0009-0003-8506-0271))
+
+## Citation
+
+This repository can be cited using the metadata in `CITATION.cff` (will be added in T3.8 together with the Zenodo DOI badge above).
 
 ## Licences
 
