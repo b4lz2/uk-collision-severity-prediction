@@ -14,7 +14,6 @@ This model is documented in accordance with the FAIR4ML metadata specification (
 
 - [Model Card for gradient_boosting_severity_2026-05-25.pkl](#model-card-for--model_id-)
 - [Table of Contents](#table-of-contents)
-- [Table of Contents](#table-of-contents-1)
 - [Model Details](#model-details)
   - [Model Description](#model-description)
 - [Uses](#uses)
