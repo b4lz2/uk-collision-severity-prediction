@@ -1,15 +1,4 @@
 # Model Card for gradient_boosting_severity_2026-05-25.pkl
-
-This model is a gradient boosting classifier designed to predict road traffic collision severity in Great Britain using STATS19 data. It is part of the UK Collision Severity Prediction project, which focuses on modelling injury outcomes (Fatal, Serious, Slight) from structured collision records published by the UK Department for Transport.
-
-The model was trained using a gradient boosting ensemble method due to its strong performance on tabular, mixed-type datasets and its ability to capture non-linear interactions between road, environmental, and vehicle-related factors. The training pipeline includes preprocessing steps such as categorical encoding, missing value handling, and feature alignment across STATS19’s collision, vehicle, and casualty tables.
-
-This model is documented in accordance with the FAIR4ML metadata specification (T3.3), ensuring transparency of training configuration, feature engineering, and evaluation methodology. It is also packaged within a RO-Crate (T3.1), which provides machine-readable provenance, dataset lineage, and reproducibility metadata for the full machine learning workflow.
-
-
-
-
-
 #  Table of Contents
 
 - [Model Card for gradient_boosting_severity_2026-05-25.pkl](#model-card-for--model_id-)
@@ -30,10 +19,7 @@ This model is documented in accordance with the FAIR4ML metadata specification (
 
 This model is a gradient boosting classifier designed to predict road traffic collision severity in Great Britain using STATS19 data. It is part of the UK Collision Severity Prediction project, which focuses on modelling injury outcomes (Fatal, Serious, Slight) from structured collision records published by the UK Department for Transport.
 
-The model was trained using a gradient boosting ensemble method due to its strong performance on tabular, mixed-type datasets and its ability to capture non-linear interactions between road, environmental, and vehicle-related factors. The training pipeline includes preprocessing steps such as categorical encoding, missing value handling, and feature alignment across STATS19’s collision, vehicle, and casualty tables.
-
 This model is documented in accordance with the FAIR4ML metadata specification (T3.3), ensuring transparency of training configuration, feature engineering, and evaluation methodology. It is also packaged within a RO-Crate (T3.1), which provides machine-readable provenance, dataset lineage, and reproducibility metadata for the full machine learning workflow.
-
 
 - **Language(s) (NLP):** en
 - **License:** mit
