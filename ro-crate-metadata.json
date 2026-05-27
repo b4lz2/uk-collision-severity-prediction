@@ -1,0 +1,183 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.1/context",
+    {
+      "@vocab": "http://schema.org/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "identifier": "ro-crate-metadata.json",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      }
+    },
+
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "identifier": "10.70124/pf9e0-43533",
+      "name": "Predicting Road Accident Severity in Great Britain",
+      "description": "A machine learning dataset and workflow for predicting road accident severity in Great Britain using UK Department for Transport road casualty statistics, including preprocessing, notebooks, trained models, figures, and prediction outputs.",
+      "datePublished": "2026-05-25",
+      "license": {
+        "@id": "./uk-collision-severity-prediction-main/LICENSE"
+      },
+      "hasPart": [
+        {
+          "@id": "uk-collision-severity-prediction-main/dft-road-casualty-statistics-collision-last-5-years.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/LICENSE"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/docs/fair4ml/gradient_boosting_severity_2026-05-25.json"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/docs/unit_mapping_table.md"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/notebooks/02_dbrepo_views.ipynb"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/notebooks/02_unit_mapping.ipynb"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/notebooks/03_semantic_mapping.ipynb"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/notebooks/04_load_data.ipynb"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/notebooks/Table Create.ipynb"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/notebooks/semantic_mapping_t2_2.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/data/processed/train.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/data/processed/test.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/data/processed/validation.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/data/processed/train_resampled.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/01_load_data.py"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/02_preprocess.py"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/03_train_classifier.py"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/04_evaluate.py"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/models/gradient_boosting_severity_2026-05-25.pkl"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/predictions/test_predictions_2026-05-25.csv"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/figures/01_data_understanding.png"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/figures/02_class_imbalance.png"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/figures/03_confusion_matrix.png"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/figures/04_performance_comparison.png"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/src/outputs/figures/05_feature_importance.png"
+        },
+        {
+          "@id": "./uk-collision-severity-prediction-main/README.md"
+        }
+      ]
+    },
+
+    {
+      "@id": "uk-collision-severity-prediction-main/dft-road-casualty-statistics-collision-last-5-years.csv",
+      "@type": "File",
+      "name": "Input Data",
+      "publisher": {
+        "@id": "https://ror.org/05wnh3t63"
+      },
+      "identifier": "https://www.gov.uk/government/statistical-data-sets/road-safety-open-data"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/LICENSE",
+      "@type": "File",
+      "name": "License"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/docs/fair4ml/gradient_boosting_severity_2026-05-25.json",
+      "@type": "File",
+      "name": "FAIR4ML"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/docs/unit_mapping_table.md",
+      "@type": "File",
+      "name": "Mapping Table"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/notebooks/02_dbrepo_views.ipynb",
+      "@type": "File",
+      "name": "Create Views Notebook"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/notebooks/02_unit_mapping.ipynb",
+      "@type": "File",
+      "name": "Unit Mapping Notebook"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/notebooks/03_semantic_mapping.ipynb",
+      "@type": "File",
+      "name": "Semantic Mapping Notebook"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/notebooks/semantic_mapping_t2_2.csv",
+      "@type": "File",
+      "name": "Semantic Mapping CSV"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/notebooks/04_load_data.ipynb",
+      "@type": "File",
+      "name": "Load Data Notebook"
+    },
+
+    {
+      "@id": "./uk-collision-severity-prediction-main/notebooks/Table Create.ipynb",
+      "@type": "File",
+      "name": "Create Table Notebook"
+    },
+
+    {
+      "@id": "https://ror.org/05wnh3t63",
+      "@type": "Organization",
+      "name": "Government of the United Kingdom"
+    }
+  ]
+}
