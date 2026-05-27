@@ -59,47 +59,47 @@
         {
             "@type": "SoftwareApplication",
             "name": "pandas",
-            "version": ">=2.0.0"
+            "version": "3.0.3"
         },
         {
             "@type": "SoftwareApplication",
             "name": "numpy",
-            "version": ">=1.26.0"
+            "version": "2.4.4"
         },
         {
             "@type": "SoftwareApplication",
             "name": "scikit-learn",
-            "version": ">=1.4.0"
-        },
-        {
-            "@type": "SoftwareApplication",
-            "name": "lightgbm",
-            "version": ">=4.0.0"
+            "version": "1.8.0"
         },
         {
             "@type": "SoftwareApplication",
             "name": "matplotlib",
-            "version": ">=3.8.0"
+            "version": "3.10.9"
         },
         {
             "@type": "SoftwareApplication",
-            "name": "seaborn",
-            "version": ">=0.13.0"
+            "name": "joblib",
+            "version": "1.5.3"
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "requests",
+            "version": "2.34.2"
         },
         {
             "@type": "SoftwareApplication",
             "name": "imbalanced-learn",
-            "version": ">=0.12.0"
+            "version": "0.14.1"
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "ipykernel",
+            "version": "7.2.0"
         },
         {
             "@type": "SoftwareApplication",
             "name": "dbrepo",
             "version": ">=1.13.0"
-        },
-        {
-            "@type": "SoftwareApplication",
-            "name": "jupyter",
-            "version": ">=7.0.0"
         }
     ],
     "keywords": [
