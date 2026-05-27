@@ -24,7 +24,7 @@ This model is documented in accordance with the FAIR4ML metadata specification (
 - [Training Details](#training-details)
   - [Training Data](#training-data)
 - [Evaluation](#evaluation)
-- [Ethical Considrations](#ethical-onsiderations)
+- [Ethical Considrations](#ethical-considerations)
 # Model Details
 
 ## Model Description
