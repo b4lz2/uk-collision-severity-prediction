@@ -1,6 +1,6 @@
 # UK Collision Severity Prediction
 
-[![DOI](https://zenodo.org/badge/DOI/TBD.svg)](TBD_ZENODO_DOI_LINK)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20416077.svg)](https://doi.org/10.5281/zenodo.20416077)
 
 Predicting the severity of road traffic collisions in the United Kingdom
 using the Department for Transport's STATS19 open data (2020–2024).
