@@ -138,9 +138,12 @@ The data loading script handles all documented API error codes:
 | `409`                   | View schema mapping failed | Raises `RuntimeError`                                                                              |
 | `500 / 502 / 503 / 504` | Transient server error     | Retries twice with 10s delay; if the following page also fails, stops gracefully with current data |
 
-##RO-Crate
+## RO-Crate
+
 RO-Crate json file: https://github.com/b4lz2/uk-collision-severity-prediction/blob/main/ro-crate-metadata.json
+
 RO-Crate Validation: https://github.com/b4lz2/uk-collision-severity-prediction/blob/main/docs/validation
+
 ## Contributors
 
 - A — Logan Charles
