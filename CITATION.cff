@@ -3,9 +3,7 @@ message: "If you use this software, please cite it as below."
 title: "UK Collision Severity Prediction"
 abstract: "A supervised machine learning pipeline classifying UK road collision
   severity (Fatal / Serious / Slight) using STATS19 data published by the UK
-  Department for Transport (2020–2024). The pipeline retrieves data exclusively
-  from TU Wien DBRepo REST API and documents the full experiment with FAIR
-  metadata standards (RO-Crate, CodeMeta, FAIR4ML, Croissant, Model Card)."
+  Department for Transport (2020–2024)."
 version: "3.0.0"
 date-released: 2026-05-27
 identifiers:
