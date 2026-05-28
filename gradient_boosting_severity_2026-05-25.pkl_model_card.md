@@ -92,13 +92,3 @@ The model may reflect or amplify existing biases in reporting practices or road 
 
 Outputs should not be used to justify discriminatory policy decisions or punitive enforcement targeting specific locations or populations. The model is intended to support safety improvements and research, not enforcement or surveillance.
 
-
-<details>
-<summary> Click to expand </summary>
-
-from transformers import ${model.config?.adapter_transformers?.model_class}
-
-model = ${model.config?.adapter_transformers?.model_class}.from_pretrained(&#34;${model.config?.adapter_transformers?.{model.id}}&#34;)
-model.load_adapter(&#34;gradient_boosting_severity_2026-05-25.pkl&#34;, source=&#34;hf&#34;)
-
-</details>
