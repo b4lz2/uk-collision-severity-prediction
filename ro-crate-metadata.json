@@ -42,6 +42,9 @@
           "@id": "./uk-collision-severity-prediction-main/docs/unit_mapping_table.md"
         },
         {
+          "@id": "./uk-collision-severity-prediction-main/docs/model-card.md"
+        },
+        {
           "@id": "./uk-collision-severity-prediction-main/notebooks/02_dbrepo_views.ipynb"
         },
         {
@@ -136,6 +139,12 @@
       "@id": "./uk-collision-severity-prediction-main/docs/unit_mapping_table.md",
       "@type": "File",
       "name": "Mapping Table"
+    },
+    
+    {
+      "@id": "./uk-collision-severity-prediction-main/docs/model-card.md",
+      "@type": "File",
+      "name": "Model Card"
     },
 
     {
