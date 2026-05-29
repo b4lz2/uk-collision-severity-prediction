@@ -121,5 +121,7 @@
             "@type": "Organization",
             "name": "TU Wien"
         }
-    }
+    },
+    "identifier": "https://doi.org/10.5281/zenodo.20416076",
+    "releaseNotes": "https://github.com/b4lz2/uk-collision-severity-prediction/releases"
 }

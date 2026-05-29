@@ -1,0 +1,411 @@
+{
+  "dmp": {
+    "title": "Predicting Road Accident Severity in Great Britain",
+    "description": "Data Management Plan for a machine learning experiment that predicts the severity of road traffic collisions in Great Britain using the UK Department for Transport STATS19 open dataset (2020-2024). The experiment trains a Gradient Boosting classifier and evaluates it on held-out test data, producing trained model artefacts and evaluation outputs.",
+    "language": "eng",
+    "created": "2026-05-29",
+    "modified": "2026-05-29",
+    "dmp_id": {
+      "identifier": "[TO BE FILLED: DOI of the DMP deposit on TUWRD]",
+      "type": "doi"
+    },
+    "contact": {
+      "name": "El Dib, Yehea",
+      "mbox": "e12450748@student.tuwien.ac.at",
+      "contact_id": {
+        "identifier": "https://orcid.org/0009-0003-8506-0271",
+        "type": "orcid"
+      }
+    },
+    "contributor": [
+      {
+        "name": "El Dib, Yehea",
+        "mbox": "e12450748@student.tuwien.ac.at",
+        "role": [
+          "data_manager",
+          "project_leader"
+        ],
+        "contributor_id": {
+          "identifier": "https://orcid.org/0009-0003-8506-0271",
+          "type": "orcid"
+        }
+      },
+      {
+        "name": "Charles, Logan",
+        "mbox": "e12550259@student.tuwien.ac.at",
+        "role": [
+          "researcher"
+        ],
+        "contributor_id": {
+          "identifier": "https://orcid.org/0009-0002-3977-1286",
+          "type": "orcid"
+        }
+      },
+      {
+        "name": "Hardt, Julian",
+        "mbox": "e12330562@student.tuwien.ac.at",
+        "role": [
+          "researcher"
+        ],
+        "contributor_id": {
+          "identifier": "https://orcid.org/0009-0003-0171-5796",
+          "type": "orcid"
+        }
+      },
+      {
+        "name": "Höfinger, Balthasar",
+        "mbox": "e11908607@student.tuwien.ac.at",
+        "role": [
+          "researcher"
+        ],
+        "contributor_id": {
+          "identifier": "https://orcid.org/0009-0000-2002-4200",
+          "type": "orcid"
+        }
+      }
+    ],
+    "cost": [],
+    "project": [
+      {
+        "title": "Predicting Road Accident Severity in Great Britain",
+        "description": "Student project for the FAIR Data Science / Data Stewardship 2026SS course at TU Wien. The project develops a fully documented, FAIR-compliant open-science machine learning experiment predicting road collision severity using UK Government open data. Zenodo DOI: https://doi.org/10.5281/zenodo.20416076",
+        "start": "2026-02-01",
+        "end": "2026-06-30",
+        "funding": [
+          {
+            "funder_id": {
+              "identifier": "https://ror.org/04d836q62",
+              "type": "ror"
+            },
+            "funding_status": "planned",
+            "grant_id": {
+              "identifier": "N/A - student course project",
+              "type": "other"
+            }
+          }
+        ]
+      }
+    ],
+    "ethical_issues_exist": "no",
+    "ethical_issues_description": "The dataset consists entirely of aggregated road collision statistics published by an official government body. No personal data are processed. GDPR does not apply.",
+    "ethical_issues_report": "No ethical review required.",
+    "dataset": [
+      {
+        "dataset_id": {
+          "identifier": "https://www.gov.uk/government/statistical-data-sets/road-safety-open-data",
+          "type": "url"
+        },
+        "title": "STATS19 Road Safety Open Dataset (2020-2024)",
+        "description": "Police-reported road traffic collision records from Great Britain covering 2020-2024, collected via the STATS19 reporting system and published by the UK Department for Transport. Approximately 503,000 rows with 44 attributes per collision including severity, location, road conditions, weather, and vehicle/casualty counts. Downloaded once from the UK Government open data portal and imported into TU Wien DBRepo.",
+        "type": "dataset",
+        "format": [
+          "text/csv"
+        ],
+        "keyword": [
+          "road safety",
+          "collision severity",
+          "STATS19",
+          "UK traffic data",
+          "open government data"
+        ],
+        "language": "eng",
+        "issued": "2019-01-01",
+        "personal_data": "no",
+        "sensitive_data": "no",
+        "is_reused": "reused",
+        "data_quality_assurance": [
+          "Row counts and class distributions verified at every pipeline step.",
+          "DBRepo view row count verified against X-Count response header before processing.",
+          "Fixed random_state=42 used throughout for reproducibility.",
+          "SMOTE applied to training set only to handle class imbalance."
+        ],
+        "distribution": [
+          {
+            "title": "STATS19 Road Safety Open Dataset — UK Government open data portal",
+            "access_url": "https://www.gov.uk/government/statistical-data-sets/road-safety-open-data",
+            "available_until": "2036-06-30",
+            "byte_size": 524288000,
+            "data_access": "open",
+            "format": [
+              "text/csv"
+            ],
+            "license": [
+              {
+                "license_ref": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+                "start_date": "2019-01-01"
+              }
+            ]
+          },
+          {
+            "title": "STATS19 Road Safety Open Dataset — TU Wien DBRepo",
+            "access_url": "https://test.dbrepo.tuwien.ac.at/database/82c19b39-246c-4409-b25c-8baf3a158a70",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "format": [
+              "application/json"
+            ],
+            "license": [
+              {
+                "license_ref": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+                "start_date": "2026-05-11"
+              }
+            ],
+            "host": {
+              "title": "TU Wien DBRepo",
+              "url": "https://test.dbrepo.tuwien.ac.at",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "storage_type": "relational database"
+            }
+          }
+        ],
+        "security_and_privacy": [
+          {
+            "title": "No special measures required",
+            "description": "The dataset contains no personal or sensitive data. Standard open-access permissions apply."
+          }
+        ]
+      },
+      {
+        "dataset_id": {
+          "identifier": "https://doi.org/10.70124/s4hn9-sqv24",
+          "type": "doi"
+        },
+        "title": "UK Collision Severity Prediction — Processed Data Splits",
+        "description": "Train (70%), validation (15%), and test (15%) CSV splits produced from the STATS19 input data by 01_load_data.py and 02_preprocess.py. Split is stratified by collision_severity with fixed random_state=42. train_resampled.csv includes SMOTE oversampling of minority classes. Each file contains 15 ML features plus the collision_severity label.",
+        "type": "dataset",
+        "format": [
+          "text/csv"
+        ],
+        "keyword": [
+          "road safety",
+          "collision severity",
+          "machine learning",
+          "train test split"
+        ],
+        "language": "eng",
+        "personal_data": "no",
+        "sensitive_data": "no",
+        "is_reused": "produced",
+        "data_quality_assurance": [
+          "Stratified split ensures class distribution is preserved across all three sets.",
+          "Row counts printed after each split step to catch silent data loss."
+        ],
+        "distribution": [
+          {
+            "title": "Processed data splits — TU Wien Research Data Repository",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "format": [
+              "text/csv"
+            ],
+            "license": [
+              {
+                "license_ref": "https://creativecommons.org/licenses/by/4.0/",
+                "start_date": "2026-05-29"
+              }
+            ],
+            "host": {
+              "title": "TU Wien Research Data Repository (test instance)",
+              "url": "https://test.researchdata.tuwien.ac.at",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "certified_with": "CoreTrustSeal",
+              "storage_type": "institutional repository"
+            },
+            "access_url": "https://doi.org/10.70124/s4hn9-sqv24"
+          },
+          {
+            "title": "GitHub repository — Zenodo DOI",
+            "access_url": "https://doi.org/10.5281/zenodo.20416076",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "license": [
+              {
+                "license_ref": "https://spdx.org/licenses/MIT.html",
+                "start_date": "2026-05-29"
+              }
+            ],
+            "host": {
+              "title": "Zenodo",
+              "url": "https://zenodo.org",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "storage_type": "open repository"
+            }
+          }
+        ]
+      },
+      {
+        "dataset_id": {
+          "identifier": "https://doi.org/10.70124/cghhd-yb573",
+          "type": "doi"
+        },
+        "title": "UK Collision Severity Prediction — Trained Gradient Boosting Model",
+        "description": "Serialised scikit-learn GradientBoostingClassifier trained on the SMOTE-resampled training set to predict collision severity (Fatal / Serious / Slight). Selected from three candidates (Decision Tree, Random Forest, Gradient Boosting) by Macro F1 on the validation set. Hyperparameters: n_estimators=150, max_depth=6, learning_rate=0.1, random_state=42. Test set performance: accuracy 0.676, macro F1 0.403.",
+        "type": "model",
+        "format": [
+          "application/octet-stream"
+        ],
+        "keyword": [
+          "road safety",
+          "collision severity",
+          "gradient boosting",
+          "scikit-learn",
+          "machine learning model"
+        ],
+        "language": "eng",
+        "personal_data": "no",
+        "sensitive_data": "no",
+        "is_reused": "produced",
+        "data_quality_assurance": [
+          "Model selected by Macro F1 score on held-out validation set.",
+          "Test set used only once for final evaluation.",
+          "FAIR4ML metadata documents all hyperparameters and evaluation metrics."
+        ],
+        "distribution": [
+          {
+            "title": "Trained model — TU Wien Research Data Repository",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "format": [
+              "application/octet-stream"
+            ],
+            "license": [
+              {
+                "license_ref": "https://creativecommons.org/licenses/by/4.0/",
+                "start_date": "2026-05-29"
+              }
+            ],
+            "host": {
+              "title": "TU Wien Research Data Repository (test instance)",
+              "url": "https://test.researchdata.tuwien.ac.at",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "certified_with": "CoreTrustSeal",
+              "storage_type": "institutional repository"
+            },
+            "access_url": "https://doi.org/10.70124/cghhd-yb573"
+          },
+          {
+            "title": "GitHub repository — Zenodo DOI",
+            "access_url": "https://doi.org/10.5281/zenodo.20416076",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "license": [
+              {
+                "license_ref": "https://spdx.org/licenses/MIT.html",
+                "start_date": "2026-05-29"
+              }
+            ],
+            "host": {
+              "title": "Zenodo",
+              "url": "https://zenodo.org",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "storage_type": "open repository"
+            }
+          }
+        ]
+      },
+      {
+        "dataset_id": {
+          "identifier": "https://doi.org/10.70124/s4hn9-sqv24",
+          "type": "doi"
+        },
+        "title": "UK Collision Severity Prediction — Model Evaluation Outputs",
+        "description": "Evaluation figures and predictions produced by 03_train_classifier.py and 04_evaluate.py: test_predictions_2026-05-25.csv (predicted vs. actual labels for 17,220 test samples), 01_data_understanding.png, 02_class_imbalance.png, 03_confusion_matrix.png, 04_performance_comparison.png, 05_feature_importance.png.",
+        "type": "dataset",
+        "format": [
+          "text/csv",
+          "image/png"
+        ],
+        "keyword": [
+          "road safety",
+          "collision severity",
+          "confusion matrix",
+          "feature importance",
+          "evaluation"
+        ],
+        "language": "eng",
+        "personal_data": "no",
+        "sensitive_data": "no",
+        "is_reused": "produced",
+        "distribution": [
+          {
+            "title": "Model evaluation outputs — TU Wien Research Data Repository",
+            "access_url": "https://doi.org/10.70124/s4hn9-sqv24",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "format": [
+              "text/csv",
+              "image/png"
+            ],
+            "license": [
+              {
+                "license_ref": "https://creativecommons.org/licenses/by/4.0/",
+                "start_date": "2026-05-29"
+              }
+            ],
+            "host": {
+              "title": "TU Wien Research Data Repository (test instance)",
+              "url": "https://test.researchdata.tuwien.ac.at",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "certified_with": "CoreTrustSeal",
+              "storage_type": "institutional repository"
+            }
+          },
+          {
+            "title": "Model evaluation outputs — GitHub",
+            "access_url": "https://github.com/b4lz2/uk-collision-severity-prediction",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "format": [
+              "image/png"
+            ],
+            "license": [
+              {
+                "license_ref": "https://spdx.org/licenses/MIT.html",
+                "start_date": "2026-05-29"
+              }
+            ]
+          },
+          {
+            "title": "GitHub repository — Zenodo DOI",
+            "access_url": "https://doi.org/10.5281/zenodo.20416076",
+            "available_until": "2036-06-30",
+            "data_access": "open",
+            "license": [
+              {
+                "license_ref": "https://spdx.org/licenses/MIT.html",
+                "start_date": "2026-05-29"
+              }
+            ],
+            "host": {
+              "title": "Zenodo",
+              "url": "https://zenodo.org",
+              "supports_versioning": "yes",
+              "pid_system": [
+                "doi"
+              ],
+              "storage_type": "open repository"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
