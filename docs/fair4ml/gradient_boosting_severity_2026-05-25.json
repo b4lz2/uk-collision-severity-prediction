@@ -161,7 +161,7 @@
     "@type": "DataDownload",
     "name": "gradient_boosting_severity_2026-05-25.pkl",
     "encodingFormat": "application/octet-stream",
-    "contentUrl": "TBD_TUWRD_URL_FROM_T3.9"
+    "contentUrl": "https://test.researchdata.tuwien.ac.at/uploads/cghhd-yb573"
   },
 
   "wasDerivedFrom": [
